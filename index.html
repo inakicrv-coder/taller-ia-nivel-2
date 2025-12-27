@@ -22,7 +22,7 @@
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        medical: { 50: '#f0f9ff', 100: '#e0f2fe', 600: '#0284c7', 800: '#075985' }
+                        medical: { 50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc', 600: '#0284c7', 800: '#075985' }
                     }
                 }
             }
@@ -74,7 +74,12 @@
                 Eye: <><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></>,
                 Clock: <circle cx="12" cy="12" r="10"></circle>,
                 Target: <circle cx="12" cy="12" r="10"></circle>,
-                Glasses: <><circle cx="6" cy="12" r="4"/><circle cx="18" cy="12" r="4"/><path d="M10 12h4"/></>
+                Glasses: <><circle cx="6" cy="12" r="4"/><circle cx="18" cy="12" r="4"/><path d="M10 12h4"/></>,
+                Play: <polygon points="5 3 19 12 5 21 5 3"></polygon>,
+                Bandage: <path d="M10 2h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>,
+                Thermometer: <path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path>,
+                Activity: <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>,
+                Scissors: <><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></>
             };
 
             const path = icons[name] || null;
@@ -135,11 +140,75 @@ No se conocen procedimientos de contrastada eficacia.
         // --- DATOS ---
         const REPOSITORY_DOCS = [
             { id: 100, title: 'CI Amigdalectomía (ORL)', description: 'Consentimiento para ejercicio de simplificación.', type: 'DOC', category: 'Ejercicio', content: TEXTO_CI_AMIGDALAS, url: null },
-            { id: 1, title: 'Convenio Osakidetza', description: 'Marco regulador y derechos laborales (PDF completo).', type: 'LINK', category: 'Laboral', content: null, url: 'https://www.osakidetza.euskadi.eus/' },
-            { id: 2, title: 'Guía de Gasometrías', description: 'Interpretación rápida de equilibrio ácido-base.', type: 'LINK', category: 'Clínica', content: null, url: 'https://www.google.com' },
-            { id: 3, title: 'Manual de EKG', description: 'Lectura de ritmos y arritmias comunes.', type: 'LINK', category: 'Clínica', content: null, url: 'https://www.google.com' },
-            { id: 4, title: 'Guía de Apósitos e INS', description: 'Protocolos de curas y accesos vasculares.', type: 'LINK', category: 'Clínica', content: null, url: 'https://www.google.com' },
-            { id: 5, title: 'Formulario Bottom-Up', description: 'Plantilla para propuestas de mejora.', type: 'LINK', category: 'Gestión', content: null, url: 'https://www.google.com' },
+            { 
+                id: 1, 
+                title: 'Convenio Osakidetza', 
+                description: 'Marco regulador y derechos laborales (PDF completo).', 
+                type: 'LINK', 
+                category: 'Laboral', 
+                content: null, 
+                url: 'https://www.comgi.eus/Fichero.aspx?mod=gescontenidos&sec=arc&lng=EU&cod=1063&fil=20170407083245265ARCH_Fichero.pdf&nom=Acuerdo+Regulador+de+las+Condiciones+de+Trabajo+de+Osakidetza' 
+            },
+            { 
+                id: 6, 
+                title: 'GPC Hemocultivos', 
+                description: 'Guía de Práctica Clínica (Fuente: Drive).', 
+                type: 'LINK', 
+                category: 'Clínica', 
+                content: null, 
+                url: 'https://drive.google.com/file/d/1wBt0HAT5eeD5jueWelsgzc_riOXfrLdp/view?usp=sharing' 
+            },
+            { 
+                id: 2, 
+                title: 'Interpretación de Gasometrías', 
+                description: 'Recursos prácticos para la lectura de equilibrio ácido-base.', 
+                type: 'MULTI', 
+                category: 'Clínica',
+                actions: [
+                    { label: 'Guía práctica de interpretación', url: 'https://drive.google.com/file/d/1oRx-lI82GiWqBGACEtRFWr30nZb7xf_B/view?usp=sharing', icon: 'FileText' },
+                    { label: 'Interpretación en tres pasos', url: 'https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S2448-89092018000300156', icon: 'FileText' }
+                ]
+            },
+            { 
+                id: 3, 
+                title: 'Manual de EKG', 
+                description: 'Patrones visuales. Diagnóstico inmediato.', 
+                type: 'LINK', 
+                category: 'Clínica', 
+                content: null, 
+                url: 'https://drive.google.com/file/d/1bk1J4ck_9R58DzZRpavkyt6KMpr1uCN6/view?usp=drive_link' 
+            },
+            { 
+                id: 4, 
+                title: 'Guía INS', 
+                description: 'Estándares de Práctica de Terapia de Infusión.', 
+                type: 'LINK', 
+                category: 'Clínica', 
+                content: null, 
+                url: 'https://drive.google.com/file/d/1c7MEjvR0bNO1avRz1DF577nFpPX4DCjI/view?usp=sharing' 
+            },
+            { 
+                id: 8, 
+                title: 'Integridad', 
+                description: 'Curar con certeza, no con suposiciones.', 
+                type: 'MULTI', 
+                category: 'Clínica',
+                actions: [
+                    { label: 'UPP', url: 'https://drive.google.com/file/d/18bdson2UjxxnrRzbf3TJZsbcTU01PKB3/view?usp=sharing', icon: 'FileText' },
+                    { label: 'Ostomías', url: 'https://drive.google.com/file/d/1B984ctpG3Eb2aXZIgqsf0_szEKEXOsU0/view?usp=sharing', icon: 'FileText' },
+                    { label: 'Heridas QX', url: 'https://drive.google.com/file/d/1pcY6dQsxpOMrwYje7Vro7lAbR_ixjUHk/view?usp=sharing', icon: 'FileText' },
+                    { label: 'Quemaduras 2º grado', url: 'https://drive.google.com/file/d/1sSWz83gzEl7YTaqrux-jMrkSW38W3EPR/view?usp=sharing', icon: 'FileText' }
+                ]
+            },
+            { 
+                id: 5, 
+                title: 'Formulario Bottom-Up', 
+                description: 'Plantilla para propuestas de mejora.', 
+                type: 'LINK', 
+                category: 'Gestión', 
+                content: null, 
+                url: 'https://docs.google.com/document/d/1jMVCSdluM4NZ_0eHgOmKjD3Nmi7_kbdK/edit?usp=sharing&ouid=100609589951142608082&rtpof=true&sd=true' 
+            },
         ];
 
         const IA_TOOLS = [
@@ -149,6 +218,12 @@ No se conocen procedimientos de contrastada eficacia.
             { name: 'Perplexity', url: 'https://www.perplexity.ai', desc: 'Búsqueda con fuentes reales.', color: 'border-teal-500 text-teal-700' },
             { name: 'Consensus', url: 'https://consensus.app', desc: 'Evidencia científica real.', color: 'border-purple-500 text-purple-700' },
             { name: 'Gamma App', url: 'https://gamma.app', desc: 'Presentaciones automáticas.', color: 'border-pink-500 text-pink-700' },
+        ];
+
+        const PROMPTS = [
+            { title: 'Análisis PICO (Lectura Crítica)', text: 'Actúa como un experto en metodología de investigación. Analiza el siguiente abstract y extrae la pregunta clínica en formato PICO (Paciente, Intervención, Comparación, Outcome). Presenta los resultados en una tabla clara.' },
+            { title: 'Resumen de Altas (Estructura)', text: 'Tengo estas notas desordenadas sobre la evolución de un paciente. Redacta un informe de continuidad de cuidados profesional, con terminología NANDA/NIC/NOC, asegurando que sea comprensible para el siguiente turno.' },
+            { title: 'Traductor Técnico Experto', text: 'Traduce este texto médico del inglés al español manteniendo el rigor técnico pero adaptando las siglas al uso común en el sistema sanitario español.' },
         ];
 
         const BONUS_TRACKS = [
@@ -169,9 +244,23 @@ No se conocen procedimientos de contrastada eficacia.
                 title: 'El Entrevistador Inverso', 
                 tool: 'ChatGPT / Gemini', 
                 desc: 'La IA te entrevista para configurar tus instrucciones personalizadas. (Haz clic para COPIAR el prompt).',
-                prompt: 'Actúa como mi estratega de IA personal. Quiero definir mis "Instrucciones Personalizadas" (Custom Instructions). Hazme una entrevista inversa: formúlame preguntas (de una en una) para entender mi rol sanitario, mis objetivos de productividad y mi tono preferido. Cuando tengas suficiente información, genera el texto exacto para pegar en la configuración.'
+                prompt: `Actúa como mi estratega personal de IA. Tu objetivo es crear mis Instrucciones Personalizadas (Custom Instructions) con el mínimo número de preguntas posible.
+Reglas obligatorias:
+Harás una sola pregunta por turno.
+Cada pregunta debe formularse de una en una (no encadenes dos preguntas distintas en el mismo turno).
+No puedes avanzar ni hacer la siguiente pregunta hasta que yo responda.
+Prioriza preguntas cerradas o semiestructuradas (opciones, escalas, plantillas) para responder rápido.
+No des recomendaciones hasta terminar la entrevista; solo recopila datos.
+En cuanto tengas lo mínimo imprescindible, generarás el texto exacto listo para pegar en la configuración, en dos bloques:
+“Qué debería saber ChatGPT sobre mí…”
+“Cómo debería responder ChatGPT…”
+Redacción en español (España), cumpliendo RAE.
+El resultado debe incluir: reglas priorizadas, formatos preferidos, límites de longitud, cuándo preguntar vs. asumir, y un bloque final de “No hacer / Prohibiciones”.
+Si para contestar hace falta información actual (normativa, guías, precios, versiones), indícalo explícitamente y sugiere verificación, sin inventar.
+Cierre obligatorio:
+Tras entregar los 2 bloques, debes decir: “Revísalo y dime qué corregir, añadir o eliminar para afinarlo.”`
             },
-            { id: 13, type: 'humor', title: '12+1. Mi IA es mi Jefe', tool: 'ChatGPT (@monday)', desc: 'Dile a @monday que has terminado. Disfruta la felicitación exagerada.' },
+            { id: 13, type: 'humor', title: '12+1. Mi IA es mi Jefe', tool: 'ChatGPT (@monday)', desc: 'Dile a @monday que has terminado. Disfruta la felicitación exagerada.', prompt: 'Escribe una felicitación épica, muy humorística y sin vergüenza, dirigida a mí (soy una asistente del Taller IA Nivel 2 para Enfermería) porque he llegado al final de todos los bonus track. Incluye guiños internos al taller (workflows, prompts, “IA copiloto, yo al volante”, seguridad/criterio clínico, caos controlado) y menciona al docente: Iñaki, enfermero. Tono gamberro pero profesional, frases cortas, algún emoji, y remata con un cierre memorable tipo “Logro desbloqueado”.' },
         ];
 
         // --- COMPONENTES UI ---
@@ -297,14 +386,6 @@ No se conocen procedimientos de contrastada eficacia.
                                     <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-8 font-light leading-relaxed">
                                         Más allá del prompt: flujos de trabajo inteligentes.
                                     </p>
-                                    <div className="flex justify-center gap-4">
-                                        <Button onClick={() => setActiveTab('repo')} className="px-6 py-3 text-base">
-                                            <Icon name="BookOpen" size={18} /> Repositorio
-                                        </Button>
-                                        <Button variant="white" onClick={() => setActiveTab('tools')} className="px-6 py-3 text-base">
-                                            <Icon name="Zap" size={18} /> Herramientas
-                                        </Button>
-                                    </div>
                                 </header>
 
                                 <div className="grid md:grid-cols-2 gap-6">
@@ -362,13 +443,30 @@ No se conocen procedimientos de contrastada eficacia.
                                             </div>
                                             <h3 className="font-bold text-slate-800 mb-2">{doc.title}</h3>
                                             <p className="text-sm text-slate-500 mb-6 flex-grow">{doc.description}</p>
-                                            <Button 
-                                                variant={doc.type === 'DOC' ? 'primary' : 'white'} 
-                                                onClick={() => handleOpenDoc(doc)}
-                                                className="w-full"
-                                            >
-                                                {doc.type === 'DOC' ? <><Icon name="Eye" size={16}/> Ver Texto</> : <><Icon name="ExternalLink" size={16}/> Abrir PDF</>}
-                                            </Button>
+                                            
+                                            {/* Lógica de renderizado de botones */}
+                                            {doc.type === 'MULTI' ? (
+                                                <div className="space-y-2 w-full">
+                                                    {doc.actions.map((action, idx) => (
+                                                        <a key={idx} href={action.url} target="_blank" rel="noopener noreferrer" className="block w-full">
+                                                            <Button 
+                                                                variant="white" 
+                                                                className="w-full justify-start text-xs h-9 hover:-translate-y-0.5 hover:shadow-md hover:bg-medical-50 hover:text-medical-600 hover:border-medical-300 transition-all duration-200"
+                                                            >
+                                                                <Icon name={action.icon} size={14} /> {action.label}
+                                                            </Button>
+                                                        </a>
+                                                    ))}
+                                                </div>
+                                            ) : (
+                                                <Button 
+                                                    variant={doc.type === 'DOC' ? 'primary' : 'white'} 
+                                                    onClick={() => handleOpenDoc(doc)}
+                                                    className="w-full"
+                                                >
+                                                    {doc.type === 'DOC' ? <><Icon name="Eye" size={16}/> Ver Texto</> : <><Icon name="ExternalLink" size={16}/> Abrir PDF</>}
+                                                </Button>
+                                            )}
                                         </Card>
                                     ))}
                                 </div>
@@ -393,6 +491,28 @@ No se conocen procedimientos de contrastada eficacia.
                                                 <p className="text-sm text-slate-500">{tool.desc}</p>
                                             </div>
                                         </a>
+                                    ))}
+                                </div>
+
+                                <div className="max-w-3xl mx-auto">
+                                    <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                                        <Icon name="MessageSquare" className="text-medical-600"/> Prompts Base
+                                    </h3>
+                                    {PROMPTS.map((p, i) => (
+                                        <div key={i} className="mb-3 border border-slate-200 rounded-lg bg-white overflow-hidden group">
+                                            <details className="group">
+                                                <summary className="flex items-center justify-between p-4 cursor-pointer list-none hover:bg-slate-50">
+                                                    <span className="font-medium text-slate-700">{p.title}</span>
+                                                    <Icon name="ChevronDown" size={16} className="text-slate-400 group-open:rotate-180 transition-transform"/>
+                                                </summary>
+                                                <div className="px-4 pb-4 pt-0">
+                                                    <div className="bg-slate-50 p-3 rounded text-sm text-slate-600 font-mono mb-2">{p.text}</div>
+                                                    <button onClick={() => { copyToClipboard(p.text); alert("Copiado"); }} className="text-xs font-semibold text-medical-600 hover:text-medical-800 flex items-center gap-1">
+                                                        <Icon name="Copy" size={12}/> Copiar
+                                                    </button>
+                                                </div>
+                                            </details>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
@@ -438,21 +558,24 @@ No se conocen procedimientos de contrastada eficacia.
                             </button>
 
                             {/* Navegación Secciones (Derecha) */}
-                            <div className="hidden md:flex gap-1 bg-slate-100/50 p-1 rounded-lg">
-                                {[
-                                    { id: 'repo', label: 'Docs' }, 
-                                    { id: 'tools', label: 'Tools' }, 
-                                    { id: 'bonus', label: 'Bonus' }
+                            <div className="hidden md:flex gap-2">
+                                 {[
+                                    { id: 'repo', label: 'Docs', icon: 'BookOpen' }, 
+                                    { id: 'tools', label: 'Tools', icon: 'Wrench' }, 
+                                    { id: 'bonus', label: 'Bonus', icon: 'Trophy' }
                                 ].map(t => (
-                                    <button 
-                                        key={t.id} 
+                                    <button
+                                        key={t.id}
                                         onClick={() => setActiveTab(t.id)}
-                                        className={`px-5 py-1.5 rounded-md text-sm font-medium transition-all ${
-                                            activeTab === t.id 
-                                            ? 'bg-white text-medical-600 shadow-sm ring-1 ring-slate-200/50' 
-                                            : 'text-slate-500 hover:text-slate-700 hover:bg-slate-200/50'
-                                        }`}
+                                        className={`
+                                            flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 border
+                                            ${activeTab === t.id 
+                                                ? 'bg-medical-50 text-medical-800 border-medical-200 shadow-sm' 
+                                                : 'bg-transparent text-slate-500 border-transparent hover:bg-white hover:text-medical-600 hover:border-slate-100 hover:shadow-md hover:-translate-y-1'
+                                            }
+                                        `}
                                     >
+                                        <Icon name={t.icon} size={18} className={activeTab === t.id ? "text-medical-600" : "currentColor"} />
                                         {t.label}
                                     </button>
                                 ))}
