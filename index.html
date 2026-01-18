@@ -92,7 +92,7 @@
                     {name === 'Clock' && <><polyline points="12 6 12 12 16 14"></polyline></>}
                     {name === 'Target' && <><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></>}
                     {name === 'Mail' && <polyline points="22,6 12,13 2,6"></polyline>}
-                    {name === 'Linkedin' && <rect x="2" y="9" width="4" height="12"></rect>}
+                    {name === 'Linkedin' && <><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></>}
                 </svg>
             );
         };
@@ -111,7 +111,6 @@
                 document.execCommand('copy');
             } catch (err) {
                 console.error('Error al copiar al portapapeles', err);
-                alert("No se pudo copiar automáticamente. Por favor, selecciona el texto y cópialo manualmente.");
             }
             
             document.body.removeChild(textArea);
@@ -148,10 +147,13 @@ No se conocen procedimientos de contrastada eficacia.
                 id: 1, 
                 title: 'Convenio Osakidetza', 
                 description: 'Marco regulador y derechos laborales (PDF completo).', 
-                type: 'LINK', 
+                type: 'MULTI', 
                 category: 'Laboral', 
-                content: null, 
-                url: 'https://www.comgi.eus/Fichero.aspx?mod=gescontenidos&sec=arc&lng=EU&cod=1063&fil=20170407083245265ARCH_Fichero.pdf&nom=Acuerdo+Regulador+de+las+Condiciones+de+Trabajo+de+Osakidetza' 
+                actions: [
+                    { label: 'Abrir PDF', url: 'https://www.comgi.eus/Fichero.aspx?mod=gescontenidos&sec=arc&lng=EU&cod=1063&fil=20170407083245265ARCH_Fichero.pdf&nom=Acuerdo+Regulador+de+las+Condiciones+de+Trabajo+de+Osakidetza', icon: 'ExternalLink' },
+                    { label: 'Actualización 2023', url: 'https://drive.google.com/file/d/1-yAtWI3wc6Rrt6JCrtaCAZ9vnrRdGy6O/view?usp=sharing', icon: 'FileText' },
+                    { label: 'Cuidado de menores', url: 'https://drive.google.com/file/d/14trywoPlvtjx1-mEnY4Ww9u6OOFXsbE8/view?usp=sharing', icon: 'FileText' }
+                ]
             },
             { 
                 id: 6, 
@@ -270,7 +272,7 @@ Tras entregar los 2 bloques, debes decir: “Revísalo y dime qué corregir, añ
                 title: '12+1. Mi IA es mi Jefe', 
                 tool: 'ChatGPT (@monday)', 
                 desc: 'Dile a @monday que has terminado. Disfruta la felicitación exagerada.',
-                prompt: 'Escribe una felicitación épica, muy humorística y sin vergüenza, dirigida a mí (soy una asistente del Taller IA Nivel 2 para Enfermería) porque he llegado al final de todos los bonus track. Incluye guiños internos al taller (workflows, prompts, “IA copiloto, yo al volante”, seguridad/criterio clínico, caos controlado) y menciona al docente: Iñaki, enfermero. Tono gamberro pero profesional, frases cortas, algún emoji, y remata con un cierre memorable tipo “Logro desbloqueado”.'
+                prompt: 'Escribe una felicitación épica, muy humorística y sin vergüenza, dirigida a mí (soy una asistente del Taller IA Nivel 2 para Enfermería) porque he llegado al final de todos los bonus track. Incluye guiños internos al taller (workflows, prompts, “IA copiloto, yo al volante”, seguridad/criterio clínico, caos controlado) y menciona al docente: Iñaki, enfermero. Tono gamberro pero profesional, frases cortas, algún emoji, y remata con un cierre memorable tipo “Logro desbloqueado”.' 
             },
         ];
 
@@ -306,7 +308,6 @@ Tras entregar los 2 bloques, debes decir: “Revísalo y dime qué corregir, añ
             const handleCopy = () => {
                 if (track.prompt) {
                     copyToClipboard(track.prompt);
-                    alert("Prompt copiado:\n\n" + track.prompt);
                 }
             };
 
@@ -406,7 +407,7 @@ Tras entregar los 2 bloques, debes decir: “Revísalo y dime qué corregir, añ
                                         </h2>
                                         <ul className="space-y-3 text-slate-600 text-sm">
                                             {[
-                                                "Herramientas de IA útiles (y sus límites).",
+                                                "Conocer herramientas de IA útiles (y sus límites).",
                                                 "Método seguro: pedir → verificar → producir.",
                                                 "Workflows para ahorrar tiempo sin bajar calidad."
                                             ].map((item, i) => (
@@ -605,8 +606,7 @@ Tras entregar los 2 bloques, debes decir: “Revísalo y dime qué corregir, añ
                                 <h4 className="font-bold text-slate-800 mb-3 flex items-center justify-center gap-2">
                                     <Icon name="Glasses" size={16} className="text-medical-600"/> Docencia
                                 </h4>
-                                <p className="text-sm text-slate-500">Diseño: Iñaki Casas (Enfermero)</p>
-                                <p className="text-sm text-slate-400 mt-1">Hospital Zumarraga - OSI Goierri-Alto Urola</p>
+                                <p className="text-sm text-slate-500">Diseño: Iñaki Casas | Potenciado por IA</p>
                             </div>
                             
                             {/* Contacto */}
