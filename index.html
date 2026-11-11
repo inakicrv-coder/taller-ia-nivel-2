@@ -280,7 +280,7 @@ No se conocen procedimientos de contrastada eficacia.
             { name: 'Claude', url: 'https://claude.ai', desc: 'Alternativa para trabajar con textos y documentos.', color: 'border-orange-500 text-orange-700' },
             { name: 'ChatGPT', url: 'https://chatgpt.com', desc: 'Razonamiento y estructuración.', color: 'border-emerald-500 text-emerald-700' },
             { name: 'Gemini', url: 'https://gemini.google.com', desc: 'Multimodalidad y ecosistema Google.', color: 'border-blue-500 text-blue-700' },
-            { name: 'NotebookLM', url: 'https://notebooklm.google.com', desc: 'Análisis profundo de fuentes.', color: 'border-indigo-500 text-indigo-700' },
+            { name: 'Gemini Notebook', url: 'https://notebook.google.com/', desc: 'Análisis profundo de fuentes.', color: 'border-indigo-500 text-indigo-700' },
             { name: 'Perplexity', url: 'https://www.perplexity.ai', desc: 'Búsqueda con fuentes reales.', color: 'border-teal-500 text-teal-700' },
             { name: 'Consensus', url: 'https://consensus.app', desc: 'Evidencia científica real.', color: 'border-purple-500 text-purple-700' },
             { name: 'OpenEvidence', url: 'https://www.openevidence.com/', desc: 'Consultas clínicas con referencias a la literatura médica.', color: 'border-indigo-500 text-indigo-700' },
@@ -296,15 +296,15 @@ No se conocen procedimientos de contrastada eficacia.
 
         const BONUS_TRACKS = [
             { id: 1, type: 'formal', title: 'Traductor PICO/PECO', tool: 'Gemini / ChatGPT', desc: 'Busca un artículo clínico reciente y pide a la IA que extraiga la pregunta en formato PICO.' },
-            { id: 2, type: 'humor', title: 'El Convenio vs. Dracarys', tool: 'NotebookLM', desc: 'Pregunta al PDF del Convenio cuántos días de licencia tocan por "Cuidado de dragones".' },
+            { id: 2, type: 'humor', title: 'El Convenio vs. Dracarys', tool: 'Gemini Notebook', desc: 'Pregunta al PDF del Convenio cuántos días de licencia tocan por "Cuidado de dragones".' },
             { id: 3, type: 'humor', title: 'Gasometría hip-hop', tool: 'ChatGPT / Gemini / Claude', desc: 'Pide a la IA que explique la acidosis metabólica utilizando el estilo de una canción hip-hop.' },
-            { id: 4, type: 'formal', title: 'Flashcards de EKG', tool: 'NotebookLM', desc: 'Solicita a NotebookLM que genere tarjetas de estudio para repasar arritmias.' },
+            { id: 4, type: 'formal', title: 'Flashcards de EKG', tool: 'Gemini Notebook', desc: 'Solicita a Gemini Notebook que genere tarjetas de estudio para repasar arritmias.' },
             { id: 5, type: 'humor', title: 'Caso Clínico "House"', tool: 'Gemini / ChatGPT', desc: 'Busca una noticia clínica curiosa y pide un diagnóstico diferencial estilo Dr. House.' },
             { id: 6, type: 'formal', title: 'Simplificador de CI', tool: 'Gemini', desc: 'Usa el texto del CI de Amígdalas y pide que reescriba los riesgos para un niño de 9 años.' },
             { id: 7, type: 'humor', title: 'Influencer de Heridas', tool: 'ChatGPT', desc: 'Redacta un post de Instagram sobre una cura con tono influencer y hashtags absurdos.' },
-            { id: 8, type: 'formal', title: 'Investigador Hemocultivos', tool: 'NotebookLM', desc: 'Busca una guía de hemocultivos, cárgala y extrae el protocolo paso a paso.' },
+            { id: 8, type: 'formal', title: 'Investigador Hemocultivos', tool: 'Gemini Notebook', desc: 'Busca una guía de hemocultivos, cárgala y extrae el protocolo paso a paso.' },
             { id: 9, type: 'humor', title: 'Tinder de los Apósitos', tool: 'ChatGPT (@monday)', desc: 'Crea un perfil de Tinder para un apósito (ej. Alginato) buscando "herida exudativa".' },
-            { id: 10, type: 'humor', title: 'Emoji-Protocolo', tool: 'NotebookLM', desc: 'Pide resumir el protocolo de Gasometrías usando SOLO emojis.' },
+            { id: 10, type: 'humor', title: 'Emoji-Protocolo', tool: 'Gemini Notebook', desc: 'Pide resumir el protocolo de Gasometrías usando SOLO emojis.' },
             { id: 11, type: 'formal', title: 'Proyecto "Papel Cero"', tool: 'Gemini / ChatGPT', desc: 'Pide un cronograma a 6 meses para eliminar el papel en tu unidad.' },
             { 
                 id: 12, 
